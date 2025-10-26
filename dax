@@ -47,3 +47,285 @@ VAR _relationships = SELECTCOLUMNS(
 
 RETURN
 UNION(_columns, _measures, _tables, _relationships)
+
+
+05: Dictionary = /* source https://github.com/powerbibro/powerbibro/tree/main
+
+var _columns =              SELECTCOLUMNS
+                            (
+                            INFO.VIEW.COLUMNS()         ---- INFO VIEW
+                            ,"Info Group", "Columns"    ---- INFO GROUP
+                            ,"Info Group Order", 1      ---- INFO GROUP ORDER
+                            ,"Alignment", [Alignment]
+                            ,"AlternateOf", [AlternateOf]
+                            ,"CalculationGroupPrecedence", BLANK()
+                            ,"ColumnStorage", [ColumnStorage]
+                            ,"CrossFilteringBehavior", BLANK()
+                            ,"DataCategory", [DataCategory]
+                            ,"DataType", [DataType]
+                            ,"Description", [Description]
+                            ,"DetailRowsDefinition", BLANK()
+                            ,"DisplayFolder", IF([DisplayFolder] = BLANK(),"* No Folder",[DisplayFolder])
+                            ,"Expression", [Expression]
+                            ,"FormatString", [FormatString]
+                            ---,"FormatStringDefinition", BLANK() -- UTILIZING FORMAT STRING
+                            ,"FromCardinality", BLANK()
+                            ,"FromColumn", BLANK()
+                            ,"FromTable", BLANK()
+                            ,"GroupingBehavior", [GroupingBehavior]
+                            ,"ID", [ID]
+                            ,"IsActive", BLANK()
+                            ,"IsAvailableInMDX", [IsAvailableInMDX]
+                            ,"IsHidden", [IsHidden]
+                            ,"IsKey", [IsKey]
+                            ,"IsNullable", [IsNullable]
+                            ,"IsPrivate", BLANK()
+                            ,"IsSimpleMeasure", BLANK()
+                            ,"IsUnique", [IsUnique]
+                            ,"KPIID", BLANK()
+                            ,"LineageTag", [LineageTag]
+                            ,"Model", BLANK()
+                            ,"Name", [Name]
+                            --,"Relationship", BLANK()
+                            ,"RelyOnReferentialIntegrity", BLANK()
+                            ,"SecurityFilteringBehavior", BLANK()
+                            ,"ShowAsVariationOnly", BLANK()
+                            ,"SortByColumn", [SortByColumn]
+                            ,"SourceColumn", [SourceColumn]
+                            ,"SourceProviderType", [SourceProviderType]
+                            --,"State", BLANK()
+                            ,"StorageMode", BLANK()
+                            ,"SummarizeBy", [SummarizeBy]
+                            ,"Table", [Table]
+                            ,"TableStorage", BLANK()
+                            ,"ToCardinality", BLANK()
+                            ,"ToColumn", BLANK()
+                            ,"ToTable", BLANK()
+                            ,"Type", [Type]
+                            )
+                            
+var _measures =             SELECTCOLUMNS
+                            (
+                            INFO.VIEW.MEASURES()            ---- INFO VIEW
+                            ,"Info Group", "Measures"       ---- INFO GROUP
+                            ,"Info Group Order", 1      ---- INFO GROUP ORDER
+                            ,"Alignment", BLANK()
+                            ,"AlternateOf", BLANK()
+                            ,"CalculationGroupPrecedence", BLANK()
+                            ,"ColumnStorage", BLANK()
+                            ,"CrossFilteringBehavior", BLANK()
+                            ,"DataCategory", [DataCategory]
+
+                            --,"DataType", [DataType]       ---ERROR
+                            ,"DataType", BLANK() 
+
+                            ,"Description", [Description]
+                            ,"DetailRowsDefinition", [DetailRowsDefinition]
+                            ,"DisplayFolder", IF([DisplayFolder] = BLANK(),"* No Folder",[DisplayFolder])
+                            ,"Expression", [Expression]
+                            ,"FormatString", [FormatStringDefinition]
+                            --,"FormatStringDefinition", [FormatStringDefinition] -- UTILIZING FORMAT STRING
+                            ,"FromCardinality", BLANK()
+                            ,"FromColumn", BLANK()
+                            ,"FromTable", BLANK()
+                            ,"GroupingBehavior", BLANK()
+                            ,"ID", [ID]
+                            ,"IsActive", BLANK()
+                            ,"IsAvailableInMDX", BLANK()
+                            ,"IsHidden", [IsHidden]
+                            ,"IsKey", BLANK()
+                            ,"IsNullable", BLANK()
+                            ,"IsPrivate", BLANK()
+                            ,"IsSimpleMeasure", [IsSimpleMeasure]
+                            ,"IsUnique", BLANK()
+                            ,"KPIID", [KPIID]
+                            ,"LineageTag", [LineageTag]
+                            ,"Model", BLANK()
+                            ,"Name", [Name]
+                            --,"Relationship", BLANK()
+                            ,"RelyOnReferentialIntegrity", BLANK()
+                            ,"SecurityFilteringBehavior", BLANK()
+                            ,"ShowAsVariationOnly", BLANK()
+                            ,"SortByColumn", BLANK()
+                            ,"SourceColumn", BLANK()
+                            ,"SourceProviderType", BLANK()
+                            --,"State", [State]
+                            ,"StorageMode", BLANK()
+                            ,"SummarizeBy", BLANK()
+                            ,"Table", [Table]
+                            ,"TableStorage", BLANK()
+                            ,"ToCardinality", BLANK()
+                            ,"ToColumn", BLANK()
+                            ,"ToTable", BLANK()
+                            ,"Type", BLANK()
+                            )
+
+var _tables =               SELECTCOLUMNS
+                            (INFO.VIEW.TABLES()             ---- INFO VIEW
+                            ,"Info Group", "Tables"         ---- INFO GROUP
+                            ,"Info Group Order", 0      ---- INFO GROUP ORDER
+                            ,"Alignment", BLANK()
+                            ,"AlternateOf", BLANK()
+                            ,"CalculationGroupPrecedence", [CalculationGroupPrecedence]
+                            ,"ColumnStorage", BLANK()
+                            ,"CrossFilteringBehavior", BLANK()
+                            ,"DataCategory", [DataCategory]
+                            ,"DataType", [DataCategory] ---- DATA CATEGORY
+                            ,"Description", [Description]
+                            ,"DetailRowsDefinition", BLANK()
+                            ,"DisplayFolder", "* Table Attributes" ---- TABLE
+                            ,"Expression", [Expression]
+                            ,"FormatString", [StorageMode] ---- STORAGE MODE
+                            --,"FormatStringDefinition", BLANK() -- UTILIZING FORMAT STRING
+                            ,"FromCardinality", BLANK()
+                            ,"FromColumn", BLANK()
+                            ,"FromTable", BLANK()
+                            ,"GroupingBehavior", BLANK()
+                            ,"ID", [ID]
+                            ,"IsActive", BLANK()
+                            ,"IsAvailableInMDX", BLANK()
+                            ,"IsHidden", [IsHidden]
+                            ,"IsKey", BLANK()
+                            ,"IsNullable", BLANK()
+                            ,"IsPrivate", [IsPrivate]
+                            ,"IsSimpleMeasure", BLANK()
+                            ,"IsUnique", BLANK()
+                            ,"KPIID", BLANK()
+                            ,"LineageTag", [LineageTag]
+                            ,"Model", [Model]
+                            ,"Name", [Name]
+                            --,"Relationship", BLANK()
+                            ,"RelyOnReferentialIntegrity", BLANK()
+                            ,"SecurityFilteringBehavior", BLANK()
+                            ,"ShowAsVariationOnly", [ShowAsVariationOnly]
+                            ,"SortByColumn", BLANK()
+                            ,"SourceColumn", BLANK()
+                            ,"SourceProviderType", BLANK()
+                            --,"State", BLANK()
+                            ,"StorageMode", [StorageMode]
+                            ,"SummarizeBy", BLANK()
+                            ,"Table", [Name]    ---- POPULATE WITH TABLE NAME
+                            ,"TableStorage", [TableStorage]
+                            ,"ToCardinality", BLANK()
+                            ,"ToColumn", BLANK()
+                            ,"ToTable", BLANK() 
+                            ,"Type", BLANK()
+                            )
+
+var _relationships_from =   SELECTCOLUMNS
+                            (
+                            INFO.VIEW.RELATIONSHIPS()       ---- INFO VIEW
+                            ,"Info Group", "Relationships"  ---- INFO GROUP
+                            ,"Info Group Order", 2          ---- INFO GROUP ORDER
+                            ,"Alignment", BLANK()
+                            ,"AlternateOf", BLANK()
+                            ,"CalculationGroupPrecedence", BLANK()
+                            ,"ColumnStorage", BLANK()
+                            ,"CrossFilteringBehavior", [CrossFilteringBehavior]
+                            ,"DataCategory", BLANK()
+                            ,"DataType", [FromCardinality] & " to " & [ToCardinality] ---- concat cardinality
+                            ,"Description", [CrossFilteringBehavior] -- create description
+                            ,"DetailRowsDefinition", BLANK()
+                            ,"DisplayFolder", "* Model Relationships" ---- MODEL RELATIONSHIPS
+                            ,"Expression", BLANK()
+                            ,"FormatString", BLANK()
+                            --,"FormatStringDefinition", BLANK()-- UTILIZING FORMAT STRING
+                            ,"FromCardinality", [FromCardinality]
+                            ,"FromColumn", [FromColumn]
+                            ,"FromTable", [FromTable]
+                            ,"GroupingBehavior", BLANK()
+                            ,"ID", [ID]
+                            ,"IsActive", [IsActive]
+                            ,"IsAvailableInMDX", BLANK()
+                            ,"IsHidden", TRUE() ---- THESE ARE HIDDEN
+                            ,"IsKey", BLANK()
+                            ,"IsNullable", BLANK()
+                            ,"IsPrivate", BLANK()
+                            ,"IsSimpleMeasure", BLANK()
+                            ,"IsUnique", BLANK()
+                            ,"KPIID", BLANK()
+                            ,"LineageTag", BLANK()
+                            ,"Model", [Model]
+                            --,"Name", [Name]
+                            ,"Name", [Relationship] --- CONTAINS NAME
+                            --,"Relationship", [Relationship] --- NOT NEEDED
+                            ,"RelyOnReferentialIntegrity", [RelyOnReferentialIntegrity]
+                            ,"SecurityFilteringBehavior", [SecurityFilteringBehavior]
+                            ,"ShowAsVariationOnly", BLANK()
+                            ,"SortByColumn", BLANK()
+                            ,"SourceColumn", BLANK()
+                            ,"SourceProviderType", BLANK()
+                            --,"State", [State]
+                            ,"StorageMode", BLANK()
+                            ,"SummarizeBy", BLANK()
+                            ,"Table", [FromTable]   ---- FROM TABLE
+                            ,"TableStorage", BLANK()
+                            ,"ToCardinality", [ToCardinality]
+                            ,"ToColumn", [ToColumn]
+                            ,"ToTable", [ToTable] 
+                            ,"Type", BLANK()
+                            )
+
+var _relationships_to =     SELECTCOLUMNS
+                            (
+                            INFO.VIEW.RELATIONSHIPS()       ---- INFO VIEW
+                            ,"Info Group", "Relationships"  ---- INFO GROUP
+                            ,"Info Group Order", 2          ---- INFO GROUP ORDER
+                            ,"Alignment", BLANK()
+                            ,"AlternateOf", BLANK()
+                            ,"CalculationGroupPrecedence", BLANK()
+                            ,"ColumnStorage", BLANK()
+                            ,"CrossFilteringBehavior", [CrossFilteringBehavior]
+                            ,"DataCategory", BLANK()
+                            ,"DataType", [FromCardinality] & " to " & [ToCardinality] ---- concat cardinality
+                            ,"Description", [CrossFilteringBehavior] -- create description
+                            ,"DetailRowsDefinition", BLANK()
+                            ,"DisplayFolder", "* Model Relationships" ---- MODEL RELATIONSHIPS
+                            ,"Expression", BLANK()
+                            ,"FormatString", BLANK()
+                            --,"FormatStringDefinition", BLANK() -- UTILIZING FORMAT STRING
+                            ,"FromCardinality", [FromCardinality]
+                            ,"FromColumn", [FromColumn]
+                            ,"FromTable", [FromTable]
+                            ,"GroupingBehavior", BLANK()
+                            ,"ID", [ID]
+                            ,"IsActive", [IsActive]
+                            ,"IsAvailableInMDX", BLANK()
+                            ,"IsHidden", TRUE() ---- THESE ARE HIDDEN
+                            ,"IsKey", BLANK()
+                            ,"IsNullable", BLANK()
+                            ,"IsPrivate", BLANK()
+                            ,"IsSimpleMeasure", BLANK()
+                            ,"IsUnique", BLANK()
+                            ,"KPIID", BLANK()
+                            ,"LineageTag", BLANK()
+                            ,"Model", [Model]
+                            --,"Name", [Name]
+                            ,"Name", [Relationship]             --- CONTAINS NAME
+                            --,"Relationship", [Relationship]   --- NOT NEEDED
+                            ,"RelyOnReferentialIntegrity", [RelyOnReferentialIntegrity]
+                            ,"SecurityFilteringBehavior", [SecurityFilteringBehavior]
+                            ,"ShowAsVariationOnly", BLANK()
+                            ,"SortByColumn", BLANK()
+                            ,"SourceColumn", BLANK()
+                            ,"SourceProviderType", BLANK()
+                            --,"State", [State]
+                            ,"StorageMode", BLANK()
+                            ,"SummarizeBy", BLANK()
+                            ,"Table", [ToTable]                 ---- TO TABLE
+                            ,"TableStorage", BLANK()
+                            ,"ToCardinality", [ToCardinality]
+                            ,"ToColumn", [ToColumn]
+                            ,"ToTable", [ToTable] 
+                            ,"Type", BLANK()
+                            )
+
+
+var _union      = UNION(_columns,_measures,_tables,_relationships_from,_relationships_to)   ---- UNION FOR MASTER DATASET
+
+var _filter     = FILTER(_union,[DataCategory] <> "RowNumber")
+
+RETURN
+
+_filter
+
