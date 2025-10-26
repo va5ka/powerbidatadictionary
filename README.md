@@ -1,0 +1,2 @@
+# powerbidatadictionary
+DAX Data Dictionary
