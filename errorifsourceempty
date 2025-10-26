@@ -1,0 +1,6 @@
+let
+    Source = Sql.Database("xxx.database.windows.net", "ABC"),
+    dbo_Employees = Source{[Schema="dbo",Item="Employees"]}[Data],
+    EmptyCheck = if Table.IsEmpty(dbo_Employees) = true then error "Table is empty. Update aborted" else dbo_Employees
+in
+    EmptyCheck
